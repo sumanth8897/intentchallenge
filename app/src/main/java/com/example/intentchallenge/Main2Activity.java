@@ -22,6 +22,9 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         etphone=findViewById(R.id.etphone);
         etweb=findViewById(R.id.etweb);
         etaddress=findViewById(R.id.etaddress);
+        ivhappy=findViewById(R.id.ivhappy);
+        ivsad=findViewById(R.id.ivsad);
+        ivok=findViewById(R.id.ivok);
         ivhappy.setOnClickListener(this);
         ivsad.setOnClickListener(this);
         ivok.setOnClickListener(this);
@@ -30,12 +33,13 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        Intent intent=new Intent();
+
         if(etname.getText().toString().trim().isEmpty() || etphone.getText().toString().trim().isEmpty() || etweb.getText().toString().trim().isEmpty() ||
         etaddress.getText().toString().trim().isEmpty()){
             Toast.makeText(this, "Enter all data", Toast.LENGTH_SHORT).show();
 
         }else {
+            Intent intent=new Intent();
             intent.putExtra("name",etname.getText().toString().trim());
             intent.putExtra("phone",etphone.getText().toString().trim());
             intent.putExtra("web",etweb.getText().toString().trim());
@@ -46,10 +50,11 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("mood","ok");
             }else{
                 intent.putExtra("mood","sad");
-            }
+            }setResult(RESULT_OK,intent);
+            Main2Activity.this.finish();
 
-        }setResult(RESULT_OK,intent);
-        Main2Activity.this.finish();
+        }
+
 
     }
 
